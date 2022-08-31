@@ -47,6 +47,7 @@ flyway {
 	user = "postgres"
 	password = "postgres"
 	schemas = arrayOf("main")
+	cleanDisabled = false
 //	placeholders = [
 //		'keyABC': 'valueXYZ',
 //	'otherplaceholder': 'value123'
