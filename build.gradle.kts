@@ -4,7 +4,7 @@ plugins {
 	kotlin("jvm") version "1.7.10"
 	kotlin("plugin.spring") version "1.7.10"
 	kotlin("plugin.jpa") version "1.7.10"
-	id("org.flywaydb.flyway") version "9.2.1"
+	id("org.flywaydb.flyway") version "9.2.2"
 }
 
 group = "com.paynefulapps"
