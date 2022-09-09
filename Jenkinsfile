@@ -6,6 +6,7 @@ pipeline {
         sh '''pwd
 ls'''
         withGradle() {
+          sh 'gradle wrapper'
           sh './gradlew build'
           sh 'ls'
         }
