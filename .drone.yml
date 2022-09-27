@@ -1,0 +1,18 @@
+---
+kind: pipeline
+type: docker
+name: java-pipeline
+
+steps:
+  - name: test
+    image: gradle:7.5.1-jdk11-alpine
+    commands:
+      - env
+      - gradlew test
+#  - name: comment-pr
+#    image: maniator/gh
+#    commands:
+#      - gh issue {pr#} comment --body "@dependabot squash and merge"
+#    environment:
+#      GH_TOKEN:
+#        from_secret: gh_token
