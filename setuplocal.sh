@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 docker-compose up -d
 sleep 10
 docker cp ./src/main/resources/db/initDb/create_database.sql "postgres_db":/
