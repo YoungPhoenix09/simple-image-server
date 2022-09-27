@@ -8,9 +8,7 @@ steps:
     image: gradle:7.5.1-jdk11-alpine
     commands:
       - env
-      - ls
-      - pwd
-      - gradlew test
+      - ./gradlew test
 #  - name: comment-pr
 #    image: maniator/gh
 #    commands:
