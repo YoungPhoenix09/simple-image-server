@@ -8,11 +8,13 @@ steps:
     image: gradle:7.5.1-jdk11-alpine
     commands:
       - env
+      - ls
+      - pwd
       - gradlew test
 #  - name: comment-pr
 #    image: maniator/gh
 #    commands:
-#      - gh issue {pr#} comment --body "@dependabot squash and merge"
+#      - gh issue $DRONE_PULL_REQUEST comment --body "@dependabot squash and merge"
 #    environment:
 #      GH_TOKEN:
 #        from_secret: gh_token
