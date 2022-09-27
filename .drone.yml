@@ -9,6 +9,7 @@ steps:
     commands:
       - env
       - gradle wrapper
+      - ./setuplocal.sh
       - ./gradlew test
 #  - name: comment-pr
 #    image: maniator/gh
