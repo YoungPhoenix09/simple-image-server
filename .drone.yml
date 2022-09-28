@@ -5,10 +5,9 @@ name: java-pipeline
 
 steps:
   - name: test
-    image: dtforce/dind-gradle
+    image: dtforce/dind-gradle:v7.4.2-alp-jdk17-py
     commands:
       - gradle wrapper
-      - sleep 5
       - ./setuplocal.sh
       - ./gradlew test
 #  - name: comment-pr
