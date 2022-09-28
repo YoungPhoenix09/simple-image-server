@@ -11,6 +11,7 @@ steps:
         path: /var/ran
     commands:
       - env
+      - ls
       - gradlew test
 #  - name: comment-pr
 #    image: maniator/gh
