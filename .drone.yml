@@ -5,14 +5,10 @@ name: java-pipeline
 
 steps:
   - name: test
-    image: gradle:7.5.1-jdk11-alpine
-    volumes:
-      - name: dockersock
-        path: /var/ran
+    image: dtforce/dind-gradle
     commands:
-      - env
-      - ls
       - gradle wrapper
+      - sleep 5
       - ./setuplocal.sh
       - ./gradlew test
 #  - name: comment-pr
@@ -22,14 +18,3 @@ steps:
 #    environment:
 #      GH_TOKEN:
 #        from_secret: gh_token
-services:
-  - name: docker
-    image: docker:dind
-    privileged: true
-    volumes:
-      - name: dockersock
-        path: /var/run
-
-volumes:
-  - name: dockersock
-    temp: {}
