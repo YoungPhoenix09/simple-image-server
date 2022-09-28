@@ -6,15 +6,27 @@ name: java-pipeline
 steps:
   - name: test
     image: gradle:7.5.1-jdk11-alpine
+    volumes:
+      - name: dockersock
+        path: /var/ran
     commands:
-      - ls -lh
-      - gradle wrapper
-      - ./setuplocal.sh
-      - ./gradlew test
+      - env
+      - gradlew test
 #  - name: comment-pr
 #    image: maniator/gh
 #    commands:
-#      - gh issue $DRONE_PULL_REQUEST comment --body "@dependabot squash and merge"
+#      - gh issue {pr#} comment --body "@dependabot squash and merge"
 #    environment:
 #      GH_TOKEN:
 #        from_secret: gh_token
+services:
+  - name: docker
+    image: docker:dind
+    privileged: true
+    volumes:
+      - name: dockersock
+        path: /var/run
+
+volumes:
+  - name: dockersock
+    temp: {}
