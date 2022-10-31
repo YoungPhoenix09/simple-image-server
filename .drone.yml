@@ -5,7 +5,7 @@ name: java-pipeline
 
 steps:
   - name: test
-    image: dtforce/dind-gradle:v7.4.2-alp-jdk17-py
+    image: cibox
     commands:
       - gradle wrapper
       - ./setuplocal.sh
