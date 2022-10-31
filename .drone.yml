@@ -5,7 +5,7 @@ name: java-pipeline
 
 steps:
   - name: test
-    image: cibox
+    image: youngphoenix09/cibox:latest
     commands:
       - gradle wrapper
       - ./setuplocal.sh
