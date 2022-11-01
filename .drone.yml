@@ -10,7 +10,7 @@ platform:
 steps:
   - name: test
     commands:
-      - gradle wrapper
+#     - gradle wrapper
       - ./setuplocal.sh
       - ./gradlew test
 #  - name: comment-pr
