@@ -3,9 +3,12 @@ kind: pipeline
 type: exec
 name: java-pipeline
 
+platform:
+  os: darwin
+  arch: amd64
+
 steps:
   - name: test
-    image: youngphoenix09/cibox:latest
     commands:
       - gradle wrapper
       - ./setuplocal.sh
