@@ -11,6 +11,9 @@ steps:
   - name: test
     commands:
 #     - gradle wrapper
+      - pwd
+      - ls
+      - ls /
       - ./setuplocal.sh
       - ./gradlew test
 #  - name: comment-pr
