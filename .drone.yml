@@ -5,15 +5,16 @@ name: java-pipeline
 
 steps:
   - name: test
-    image: youngphoenix09/cibox:latest
+#   image: youngphoenix09/cibox:latest
+    image: docker
     commands:
 #     - gradle wrapper
-      - pwd
-      - ls
-      - ls /
+#     - pwd
+#     - ls
+#     - ls /
       - docker run -d hello-world
-      - ./setuplocal.sh
-      - ./gradlew test
+#     - ./setuplocal.sh
+#     - ./gradlew test
 #  - name: comment-pr
 #    image: maniator/gh
 #    commands:
