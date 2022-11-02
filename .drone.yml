@@ -3,6 +3,8 @@ kind: pipeline
 type: docker
 name: java-pipeline
 
+image: youngphoenix09/cibox:latest
+
 steps:
   - name: test
     commands:
