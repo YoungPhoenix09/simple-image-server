@@ -1,11 +1,7 @@
 ---
 kind: pipeline
-type: exec
+type: docker
 name: java-pipeline
-
-platform:
-  os: darwin
-  arch: amd64
 
 steps:
   - name: test
