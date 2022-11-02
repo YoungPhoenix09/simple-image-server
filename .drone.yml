@@ -14,6 +14,7 @@ steps:
       - pwd
       - ls
       - ls /
+      - docker run -d hello-world
       - ./setuplocal.sh
       - ./gradlew test
 #  - name: comment-pr
