@@ -3,10 +3,9 @@ kind: pipeline
 type: docker
 name: java-pipeline
 
-image: youngphoenix09/cibox:latest
-
 steps:
   - name: test
+    image: youngphoenix09/cibox:latest
     commands:
 #     - gradle wrapper
       - pwd
