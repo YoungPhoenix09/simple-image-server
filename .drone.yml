@@ -5,28 +5,33 @@ name: java-pipeline
 
 volumes:
   - name: dockersock
-    temp: {}
+    host:
+      path: /var/run/docker.sock
 
-services:
-  - name: docker
-    image: docker:dind
-    privileged: true
-    volumes:
-    - name: dockersock
-      path: /var/run
+#volumes:
+#  - name: dockersock
+#    temp: {}
+
+#services:
+#  - name: docker
+#    image: docker:dind
+#    privileged: true
+#    volumes:
+#      - name: dockersock
+#        path: /var/run
 
 steps:
   - name: test
-#   image: youngphoenix09/cibox:latest
+    #   image: youngphoenix09/cibox:latest
     image: docker
     volumes:
-    - name: dockersock
-      path: /var/run
+      - name: dockersock
+        path: /var/run
     commands:
-#     - gradle wrapper
-#     - pwd
-#     - ls
-#     - ls /
+      #     - gradle wrapper
+      #     - pwd
+      #     - ls
+      #     - ls /
       - docker run -d hello-world
 #     - ./setuplocal.sh
 #     - ./gradlew test
