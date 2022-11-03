@@ -15,8 +15,9 @@ steps:
       - name: dockersock
         path: /var/run/docker.sock
     commands:
-     - ./setuplocal.sh
-     - ./gradlew test
+      - gradle wrapper
+      - ./setuplocal.sh
+      - ./gradlew test
 #  - name: comment-pr
 #    image: maniator/gh
 #    commands:
