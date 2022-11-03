@@ -3,6 +3,10 @@ kind: pipeline
 type: docker
 name: java-pipeline
 
+volumes:
+  - dockersock
+    temp: {}
+
 services:
   - name: docker
     image: docker:dind
