@@ -22,6 +22,8 @@ steps:
       - name: dockersock
         path: /var/run
     commands:
+      - docker-compose up -d
+      - sleep 10
       - netstat -ta
       - gradle wrapper
       - ./setuplocal.sh
