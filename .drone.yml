@@ -26,7 +26,7 @@ steps:
     image: docker
     volumes:
       - name: dockersock
-        path: /var/run
+        path: /var/run/docker.sock
     commands:
       #     - gradle wrapper
       #     - pwd
