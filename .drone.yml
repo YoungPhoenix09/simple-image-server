@@ -22,6 +22,7 @@ steps:
       - name: dockersock
         path: /var/run
     commands:
+      - netstat -l --numeric-ports
       - gradle wrapper
       - ./setuplocal.sh
       - ./gradlew test
