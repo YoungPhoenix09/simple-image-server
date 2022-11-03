@@ -4,7 +4,7 @@ type: docker
 name: java-pipeline
 
 volumes:
-  - dockersock
+  - name: dockersock
     temp: {}
 
 services:
