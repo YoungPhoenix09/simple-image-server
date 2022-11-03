@@ -8,33 +8,15 @@ volumes:
     host:
       path: /var/run/docker.sock
 
-#volumes:
-#  - name: dockersock
-#    temp: {}
-
-#services:
-#  - name: docker
-#    image: docker:dind
-#    privileged: true
-#    volumes:
-#      - name: dockersock
-#        path: /var/run
-
 steps:
   - name: test
-    #   image: youngphoenix09/cibox:latest
-    image: docker
+    image: youngphoenix09/cibox:latest
     volumes:
       - name: dockersock
         path: /var/run/docker.sock
     commands:
-      #     - gradle wrapper
-      #     - pwd
-      #     - ls
-      #     - ls /
-      - docker run -d hello-world
-#     - ./setuplocal.sh
-#     - ./gradlew test
+     - ./setuplocal.sh
+     - ./gradlew test
 #  - name: comment-pr
 #    image: maniator/gh
 #    commands:
