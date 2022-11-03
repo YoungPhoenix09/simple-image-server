@@ -3,10 +3,21 @@ kind: pipeline
 type: docker
 name: java-pipeline
 
+services:
+  - name: docker
+    image: docker:dind
+    privileged: true
+    volumes:
+    - name: dockersock
+      path: /var/run
+
 steps:
   - name: test
 #   image: youngphoenix09/cibox:latest
     image: docker
+    volumes:
+    - name: dockersock
+      path: /var/run
     commands:
 #     - gradle wrapper
 #     - pwd
