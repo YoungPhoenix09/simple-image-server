@@ -25,6 +25,7 @@ steps:
   - name: setup_db
     image: postgres:9-alpine
     commands:
+    - sleep 30
     - psql -h "testdb" -d postgres -U postgres -a -f ./src/main/resources/db/initDb/create_database.sql
   - name: test
     image: youngphoenix09/cibox:latest
