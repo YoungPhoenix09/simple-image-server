@@ -14,22 +14,29 @@ services:
     volumes:
       - name: dockersock
         path: /var/run
+  - name: testdb
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: image_server
 
 steps:
+  - name: setup_db
+    image: postgres:9-alpine
+    commands:
+    - psql -h "testdb" -d postgres -U postgres -a -f ./src/main/resources/db/initDb/create_database.sql
   - name: test
     image: youngphoenix09/cibox:latest
     environment:
-      FLYWAY_URL: jdbc:postgresql://test:5432/image_server
+      FLYWAY_URL: jdbc:postgresql://testdb:5432/image_server
     volumes:
       - name: dockersock
         path: /var/run
     commands:
       - sleep 10
-      - docker-compose up -d
-      - sleep 10
-      - netstat -ta
       - gradle wrapper
-      - ./setuplocal.sh
+      - ./gradlew flywayMigrate
       - ./gradlew test
 #  - name: comment-pr
 #    image: maniator/gh
