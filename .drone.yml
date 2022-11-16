@@ -17,7 +17,6 @@ services:
   - name: testdb
     image: postgres
     environment:
-      POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: image_server
 
