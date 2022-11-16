@@ -18,6 +18,8 @@ services:
 steps:
   - name: test
     image: youngphoenix09/cibox:latest
+    environment:
+      FLYWAY_URL: jdbc:postgresql://test:5432/image_server
     volumes:
       - name: dockersock
         path: /var/run
