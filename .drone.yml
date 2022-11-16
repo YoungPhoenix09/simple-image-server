@@ -24,6 +24,8 @@ services:
 steps:
   - name: setup_db
     image: postgres
+    environment:
+      PGPASSWORD: postgres
     commands:
     - sleep 30
     - psql -h testdb -d postgres -U postgres -a -f ./src/main/resources/db/initDb/create_database.sql
@@ -31,7 +33,6 @@ steps:
     image: youngphoenix09/cibox:latest
     environment:
       FLYWAY_URL: jdbc:postgresql://testdb:5432/image_server
-      PGPASSWORD: postgres
     volumes:
       - name: dockersock
         path: /var/run
