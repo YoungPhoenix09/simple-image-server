@@ -19,7 +19,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: image_server
+      POSTGRES_DB: postgres
 
 steps:
   - name: setup_db
@@ -27,17 +27,17 @@ steps:
     environment:
       PGPASSWORD: postgres
     commands:
-    - sleep 30
+    - sleep 15
     - psql -h testdb -d postgres -U postgres -a -f ./src/main/resources/db/initDb/create_database.sql
   - name: test
     image: youngphoenix09/cibox:latest
     environment:
       FLYWAY_URL: jdbc:postgresql://testdb:5432/image_server
+      SPRING_DATASOURCE_URL: jdbc:postgresql://testdb:5432/image_server
     volumes:
       - name: dockersock
         path: /var/run
     commands:
-      - sleep 10
       - gradle wrapper
       - ./gradlew flywayMigrate
       - ./gradlew test
