@@ -55,9 +55,9 @@ steps:
     commands:
 #      - gh issue comment "$DRONE_PULL_REQUEST" --body "@dependabot squash and merge"
       - if [ "$DRONE_COMMIT_AUTHOR" = "dependabot[bot]" ] && [ -n "$DRONE_PULL_REQUEST" ]
-        then
-        gh issue comment "$DRONE_PULL_REQUEST" --body "@dependabot squash and merge"
-        fi
+      - then
+      - gh issue comment "$DRONE_PULL_REQUEST" --body "@dependabot squash and merge"
+      - fi
     environment:
       GH_TOKEN:
         from_secret: gh_token
