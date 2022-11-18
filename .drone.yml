@@ -1,0 +1,60 @@
+---
+kind: pipeline
+type: docker
+name: java-test-pipeline
+
+trigger:
+  event:
+  - pull_request
+
+volumes:
+  - name: dockersock
+    temp: {}
+
+services:
+  - name: docker
+    image: docker:dind
+    privileged: true
+    volumes:
+      - name: dockersock
+        path: /var/run
+  - name: testdb
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+
+steps:
+  - name: display_env
+    image: ubuntu
+    commands:
+    - ls
+    - env
+  - name: setup_db
+    image: postgres
+    environment:
+      PGPASSWORD: postgres
+    commands:
+    - sleep 15
+    - psql -h testdb -d postgres -U postgres -a -f ./src/main/resources/db/initDb/create_database.sql
+  - name: test
+    image: youngphoenix09/cibox:latest
+    environment:
+      FLYWAY_URL: jdbc:postgresql://testdb:5432/image_server
+      SPRING_DATASOURCE_URL: jdbc:postgresql://testdb:5432/image_server
+    volumes:
+      - name: dockersock
+        path: /var/run
+    commands:
+      - gradle wrapper
+      - ./gradlew flywayMigrate
+      - ./gradlew test
+#  - name: comment-pr
+#    image: maniator/gh
+#    commands:
+#      - env
+#      - gh issue comment "$DRONE_PULL_REQUEST" --body "@dependabot squash and merge"
+#    environment:
+#      GH_TOKEN:
+#        from_secret: gh_token
