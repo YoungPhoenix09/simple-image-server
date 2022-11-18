@@ -44,7 +44,8 @@ steps:
   - name: comment-pr
     image: maniator/gh
     commands:
-      - gh issue {pr#} comment --body "@dependabot squash and merge"
+      - env
+      - gh issue comment {pr#} --body "@dependabot squash and merge"
     environment:
       GH_TOKEN:
         from_secret: gh_token
