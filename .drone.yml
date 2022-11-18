@@ -1,7 +1,7 @@
 ---
 kind: pipeline
 type: docker
-name: java-pipeline
+name: java-test-pipeline
 
 trigger:
   event:
@@ -45,11 +45,11 @@ steps:
       - gradle wrapper
       - ./gradlew flywayMigrate
       - ./gradlew test
-  - name: comment-pr
-    image: maniator/gh
-    commands:
-      - env
-      - gh issue comment "$DRONE_PULL_REQUEST" --body "@dependabot squash and merge"
-    environment:
-      GH_TOKEN:
-        from_secret: gh_token
+#  - name: comment-pr
+#    image: maniator/gh
+#    commands:
+#      - env
+#      - gh issue comment "$DRONE_PULL_REQUEST" --body "@dependabot squash and merge"
+#    environment:
+#      GH_TOKEN:
+#        from_secret: gh_token
