@@ -3,6 +3,10 @@ kind: pipeline
 type: docker
 name: java-pipeline
 
+trigger:
+  event:
+  - pull_request
+
 volumes:
   - name: dockersock
     temp: {}
@@ -45,7 +49,7 @@ steps:
     image: maniator/gh
     commands:
       - env
-      - gh issue comment {pr#} --body "@dependabot squash and merge"
+      - gh issue comment "$DRONE_PULL_REQUEST" --body "@dependabot squash and merge"
     environment:
       GH_TOKEN:
         from_secret: gh_token
